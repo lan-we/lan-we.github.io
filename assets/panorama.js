@@ -1,5 +1,5 @@
 /* ============================================================
-   水乡小筑 — 2.5D 视差交互引擎
+   云水札 — 2.5D 视差交互引擎
    ============================================================ */
 (function(){
   "use strict";
@@ -23,59 +23,59 @@
   const SCENES={
     village:{
       img:IMG+"village.png",fx:"leaves",
-      kicker:"江南 · 烟波",title:"水乡小筑",
+      kicker:"江南 · 烟波",title:"云水札",
       desc:"拖动环视水乡，滚轮推近。点击建筑，推门而入。",
       spots:[
-        {x:16,y:23,label:"观云阁",enter:"guanyun",zoom:{x:16,y:22}},
-        {x:76,y:17,label:"藏书楼",enter:"cangshu",zoom:{x:76,y:18}},
-        {x:85,y:74,label:"听雨轩",enter:"tingyu",zoom:{x:84,y:78}},
-        {x:47,y:45,label:"临水亭",panel:{
-          kicker:"水乡小筑 · 题记",title:"湖上小亭",
+        {x:16,y:23,label:"照影",enter:"guanyun",zoom:{x:16,y:22}},
+        {x:76,y:17,label:"拾卷",enter:"cangshu",zoom:{x:76,y:18}},
+        {x:85,y:74,label:"候信",enter:"tingyu",zoom:{x:84,y:78}},
+        {x:47,y:45,label:"烟渚",panel:{
+          kicker:"云水札 · 题记",title:"湖上小亭",
           html:'<p class="panel-lede">湖上有亭，山间有阁，三栋建筑各藏一卷。</p>'+
-            '<p>观云阁看自述，藏书楼翻三卷随笔，听雨轩留着来信。</p>'+
+            '<p>照影看自述，拾卷翻三卷随笔，候信留着来信。</p>'+
             '<p>点建筑推门，点光点展卷。</p>'+
             '<p class="quote">烟波浩渺，客官里边请。</p>'}}
       ]
     },
     guanyun:{
       img:IMG+"guanyun.png",fx:"smoke",
-      kicker:"观云阁 · 山巅",title:"湖山书房",
+      kicker:"照影 · 山巅",title:"湖山书房",
       desc:"晨光透窗，墨香未散。案上有自述，架上有卷宗，窗畔是近况。",
       spots:[
         {x:46,y:64,label:"书案 · 自述",panel:{
-          kicker:"观云阁 · 自述",title:"你好，我是 lanwe。",
+          kicker:"照影 · 自述",title:"你好，我是 lanwe。",
           html:'<p class="panel-lede">物理出身，把「回答好不好」拆成能复核的标准。</p>'+
             brief('物理训练让我习惯先定义变量、再看数据；毕业没走工厂或学校那条稳路，改用 AI 补能力——查资料、写代码、拆问题。',
                   '现在做 AI 评测，把模糊的「感觉不对」拆成别人也能复核的标准。')+
             '<p class="quote">先问清给谁用 · 先跑样本再定标准 · 保留反例。</p>'}},
         {x:75,y:42,label:"书架 · 卷宗",panel:{
-          kicker:"观云阁 · 卷宗",title:"行止小录",
+          kicker:"照影 · 卷宗",title:"行止小录",
           html:'<p class="panel-lede">桂林理工 · 应用物理 · 2026 届 · 深圳。</p>'+
             '<p>方向 AI 评测 / 训练；Python、C、标注平台；中文母语、英语 CET-4。</p>'+
             '<p class="quote">没有正式工作经验，都是公开练习，欢迎指出问题。</p>'}},
         {x:40,y:32,label:"窗畔 · 近况",panel:{
-          kicker:"观云阁 · 近况",title:"在深圳 · 寻找 AI 评测 / 训练岗位",
+          kicker:"照影 · 近况",title:"在深圳 · 寻找 AI 评测 / 训练岗位",
           html:'<p class="panel-lede">人在深圳，找 AI 评测 / 训练的岗位。</p>'+
             '<p>应用物理 2026 届。附上 JD、作品链接或具体问题，我会回信。</p>'}}
       ]
     },
     cangshu:{
       img:IMG+"cangshu.png",fx:"dust",
-      kicker:"藏书楼 · 卷帙",title:"三卷随笔",
+      kicker:"拾卷 · 架上",title:"三卷随笔",
       desc:"万卷之间，三张书案各摊开一卷。点击光点，展卷一读。",
       spots:[
         {x:17,y:71,label:"随笔一 · 评测设计",panel:{
-          kicker:"藏书楼 · 随笔一",title:"同一句「回答得不错」，我们到底在说什么？",
+          kicker:"拾卷 · 随笔一",title:"同一句「回答得不错」，我们到底在说什么？",
           html:'<p class="panel-lede">把模糊需求拆成能打分的表。</p>'+
             brief('先追问 6 个问题（用途、代价、谁评、否决项、允许误差），拆成 5 个维度与 0/1/2 锚点，加两道一票否决门槛，用 6 条示意样本试跑。',
                   '门槛拦下了「总分高但越权」的回答，也看出「准确 ≠ 有用」。发现维度有重叠、语气最主观；6 条只够验证表能不能用。')}},
         {x:50,y:64,label:"随笔二 · 方法选择",panel:{
-          kicker:"藏书楼 · 随笔二",title:"人工评测 vs LLM-as-judge：先算账，再选路",
+          kicker:"拾卷 · 随笔二",title:"人工评测 vs LLM-as-judge：先算账，再选路",
           html:'<p class="panel-lede">200 条、2 人天，先算账再选路。</p>'+
             brief('算账发现 600 条次在 2 人天做不完；再分清哪些标准模型判不了，对比三条路线成本，设计 30 条分层校准集与一致性门槛。',
                   '不做全自动 judge：人工定标准、建校准集、终审高风险，LLM 做全量初筛与回归监控。换模型或 prompt 就重跑校准；最贵的是校准集和仲裁。')}},
         {x:82,y:71,label:"随笔三 · 标注规范",panel:{
-          kicker:"藏书楼 · 随笔三",title:"「注意准确性」不是规范",
+          kicker:"拾卷 · 随笔三",title:"「注意准确性」不是规范",
           html:'<p class="panel-lede">把形容词改成可取证的规则。</p>'+
             brief('把「准确、完整、不臆造」拆成可观察、可取证的检查项，定成 F1–F7 规则与 P0–P2 处理动作，再用 5 个边界案例试跑。',
                   '判定必须附证据，不再靠「我觉得」；「不确定就拒答、转人工」被保护而不扣分。也发现规则宜精不宜多、P0 不能泛滥、规则要版本化。')}}
@@ -83,22 +83,22 @@
     },
     tingyu:{
       img:IMG+"tingyu.png",fx:"rain",
-      kicker:"听雨轩 · 檐下",title:"煮茶候信",
+      kicker:"候信 · 檐下",title:"煮茶候信",
       desc:"雨打芭蕉，炉上水沸。案头一封信候着回音。",
       spots:[
         {x:85,y:60,label:"信笺 · 来信",panel:{
-          kicker:"听雨轩 · 来信",title:"想聊评测，或者你在招人？",
+          kicker:"候信 · 尺素",title:"想聊评测，或者你在招人？",
           html:'<p class="panel-lede">想聊评测，或你在招人？来信。</p>'+
             '<p>附上 JD、作品链接或具体问题，我会回信。</p><div class="divider"></div>'+
             '<span class="tag">Email</span><br><a class="mail-link" href="mailto:'+EMAIL+'">'+EMAIL+'</a><br>'+
             '<button class="copy-mini" type="button" data-copy="'+EMAIL+'">抄录邮箱</button>'}},
         {x:48,y:66,label:"茶席 · 箴言",panel:{
-          kicker:"听雨轩 · 箴言",title:"「人定义标准，机器放大规模，人兜底。」",
+          kicker:"候信 · 箴言",title:"「人定义标准，机器放大规模，人兜底。」",
           html:'<p class="panel-lede">不建议「全自动 judge」，人机要分工。</p>'+
             '<p>人工定义标准、做校准集、终审高风险样本；LLM 做全量初筛、回归监控、高分歧预警。</p>'+
             '<p class="quote">这不是「人 vs 机器」，是分工。</p>'}},
         {x:8,y:38,label:"屏风 · 藏言",panel:{
-          kicker:"听雨轩 · 藏言",title:"欢迎指出问题",
+          kicker:"候信 · 藏言",title:"欢迎指出问题",
           html:'<p class="panel-lede">都是公开练习，欢迎指出问题。</p>'+
             '<p>没有正式工作经验；30 条校准集只能证明「能不能用」，不能证明「有多准」。</p>'}}
       ]
@@ -373,7 +373,7 @@
 
   /* ---------- 开场 ---------- */
   const boot=$("boot"),bootBar=$("bootBar"),bootStatus=$("bootStatus"),bootEnter=$("bootEnter");
-  const steps=["正在调墨山水…","叠石为岸，引水成湖…","筑观云阁于崖上…","万卷入藏书楼…","檐下煮茶，静候听雨…","水乡已就绪。"];
+  const steps=["正在调墨山水…","叠石为岸，引水成湖…","置照影于崖上…","拾卷盈架…","檐下煮茶，静候尺素…","云水已就绪。"];
   let progress=0;
   const preload=["village","guanyun","cangshu","tingyu"].map(n=>{
     const im=new Image();im.src=IMG+n+".png";return im;
