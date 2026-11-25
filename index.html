@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>水乡小筑 · lanwe 的江南个人空间</title>
+<meta name="description" content="一座湖，一顶亭，三栋屋。lanwe 的江南水乡个站：观云阁、藏书楼、听雨轩。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ============ 开场 ============ -->
+<div class="boot" id="boot">
+  <div class="boot__paper"></div>
+  <div class="boot__seal" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="88" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
+      <circle cx="100" cy="100" r="74" fill="none" stroke="currentColor" stroke-width=".8" opacity=".35"/>
+      <path d="M100 34 Q118 60 100 84 Q82 60 100 34 Z" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".8"/>
+      <path d="M64 70 Q100 96 136 70 Q132 116 100 152 Q68 116 64 70 Z" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".8"/>
+      <path d="M64 98 Q100 118 136 98 M76 138 Q100 152 124 138" fill="none" stroke="currentColor" stroke-width="1" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="boot__inner">
+    <p class="boot__eyebrow">江南水乡 · 个人空间</p>
+    <h1 class="boot__title">水乡小筑</h1>
+    <p class="boot__sub">A JIANGNAN WATER TOWN</p>
+    <div class="boot__bar"><span id="bootBar"></span></div>
+    <p class="boot__status" id="bootStatus">正在调墨山水…</p>
+    <button class="boot__enter" id="bootEnter" type="button" disabled>步入水乡</button>
+  </div>
+</div>
+
+<!-- ============ 2.5D 场景舞台 ============ -->
+<div class="pano-stage" id="stage">
+  <div class="pano-world" id="world">
+    <img class="pano-bg" id="bgA" alt="">
+    <img class="pano-bg pano-bg--next" id="bgB" alt="">
+    <div class="pano-markers" id="markers"></div>
+  </div>
+  <canvas class="pano-fx" id="fx"></canvas>
+  <div class="pano-mist" id="mistLayer" aria-hidden="true"></div>
+</div>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- ============ 顶部栏 ============ -->
+<header class="hud-top" id="hudTop">
+  <div class="brand">
+    <span class="brand__seal">水</span>
+    <span class="brand__text"><b>lanwe</b><em>AI 评测 / 训练 · 2026 届 · 深圳</em></span>
+  </div>
+  <nav class="realm-nav" aria-label="场景导航">
+    <button type="button" data-scene="guanyun"><i>壹</i><span>观云阁</span><small>关于</small></button>
+    <button type="button" data-scene="cangshu"><i>贰</i><span>藏书楼</span><small>实验室</small></button>
+    <button type="button" data-scene="tingyu"><i>叁</i><span>听雨轩</span><small>来信</small></button>
+  </nav>
+  <div class="hud-tools">
+    <button class="tool" id="soundBtn" type="button" title="环境音" aria-label="切换环境音">音</button>
+    <button class="tool" id="helpBtn" type="button" title="操作说明" aria-label="操作说明">?</button>
+  </div>
+</header>
+
+<!-- ============ 场景标题 ============ -->
+<div class="scene-info" id="sceneInfo">
+  <p class="scene-info__kicker" id="sceneKicker">江南 · 烟波</p>
+  <h2 class="scene-info__title" id="sceneTitle">水乡小筑</h2>
+  <p class="scene-info__desc" id="sceneDesc">拖动环视水乡，滚轮推近。点击建筑，推门而入。</p>
+</div>
+
+<!-- ============ 探索提示 ============ -->
+<div class="hint" id="hint">
+  <span class="hint__mouse" aria-hidden="true"></span>
+  <span>拖动环视 · 滚轮推近 · 点击推门</span>
+</div>
+
+<!-- ============ 返回按钮 ============ -->
+<button class="back-btn" id="backBtn" type="button">← 回到湖畔</button>
+
+<!-- ============ 卷轴信息面板 ============ -->
+<aside class="scroll-panel" id="panel" aria-hidden="true">
+  <div class="scroll-panel__rod scroll-panel__rod--top"></div>
+  <div class="scroll-panel__paper">
+    <button class="scroll-panel__close" id="panelClose" type="button" aria-label="关闭">×</button>
+    <p class="scroll-panel__kicker" id="panelKicker">卷宗</p>
+    <h3 class="scroll-panel__title" id="panelTitle"></h3>
+    <div class="scroll-panel__body" id="panelBody"></div>
+  </div>
+  <div class="scroll-panel__rod scroll-panel__rod--bottom"></div>
+</aside>
+
+<!-- ============ 帮助 ============ -->
+<div class="help-card" id="helpCard" aria-hidden="true">
+  <h4>游园指南</h4>
+  <p><b>拖动</b> 环视湖山 · <b>滚轮</b> 推近推远</p>
+  <p><b>点击建筑</b> 推门而入 · <b>点击光点</b> 展读卷宗</p>
+  <p><b>Esc</b> 回到湖畔 / 收起卷宗</p>
+  <button type="button" id="helpClose">知道了</button>
+</div>
+
+<!-- ============ 底部版权 ============ -->
+<footer class="hud-footer">
+  <span>© 2026 lanwe · 水乡小筑</span>
+  <span id="fps">—</span>
+  <span>本站无追踪 · 无需联网</span>
+</footer>
+
+<script src="assets/content.js"></script>
+<script src="assets/panorama.js"></script>
+</body>
+</html>
